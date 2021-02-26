@@ -1,0 +1,11 @@
+Files:
+	assignment1_03.c
+	Makefile
+	CHANGELOG
+	
+Due Date: 2/11/2021 10:00 P.M.
+
+This project creates the beginning pieces to a dungeon player v.s. environment game by 
+	forming rooms on a 2d array that prints to the console. These rooms are connected 
+	by '#' characters. There are also stairs placed randomly in the rooms. Arguments 
+	can be passed to save and/or load dungeons.

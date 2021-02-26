@@ -1,0 +1,14 @@
+2/11/21
+	-Created the empty dungeon
+	-Rooms developed randomly
+	-Paths created
+2/18/21
+	-Created dir from source code
+2/19/21
+	-Load dungeons
+	-Save dungeons
+2/25/21
+	-player is placed in dungeon randomly
+2/26/21
+	-non tunneling shortest path complete
+	-tunneling shortest path complete
