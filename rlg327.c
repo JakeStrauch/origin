@@ -10,7 +10,7 @@ void usage(char *name)
 {
   fprintf(stderr,
           "Usage: %s [-r|--rand <seed>] [-l|--load [<file>]]\n"
-          "          [-s|--save [<file>]] [-i|--image <pgm file>]\n" "[-nn|--nummon[<count>]]",
+          "          [-s|--save [<file>]] [-i|--image <pgm file>]\n" "[-n|--nummon[<count>]]",
           name);
 
   exit(-1);
@@ -70,11 +70,10 @@ int main(int argc, char *argv[])
           }
           do_seed = 0;
           break;   
-        case 'nn':
-          if ((!long_arg && argv[i][2]) ||
-              (long_arg && strcmp(argv[i], "-nummon")) ||
-              argc < ++i + 1 ||
-              !sscanf(argv[i], "%i",&d.num_monsters){
+        case 'n':
+          if ((!long_arg && argv[i][2]) || (long_arg && strcmp(argv[i], "-nummon")) ||
+              (argc < ++i + 1) ||
+              (!sscanf(argv[i], "%i",&d.num_monsters))){
             usage(argv[0]);
           }
           break;
