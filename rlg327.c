@@ -2,6 +2,7 @@
 #include <string.h>
 #include <sys/time.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 #include "dungeon.h"
 #include "path.h"
@@ -12,7 +13,6 @@ void usage(char *name)
           "Usage: %s [-r|--rand <seed>] [-l|--load [<file>]]\n"
           "          [-s|--save [<file>]] [-i|--image <pgm file>]\n" "[-n|--nummon[<count>]]",
           name);
-
   exit(-1);
 }
 
@@ -71,7 +71,8 @@ int main(int argc, char *argv[])
           do_seed = 0;
           break;   
         case 'n':
-          if ((!long_arg && argv[i][2]) || (long_arg && strcmp(argv[i], "-nummon")) ||
+          if ((!long_arg && argv[i][2]) ||
+              (long_arg && strcmp(argv[i], "-nummon")) ||
               (argc < ++i + 1) ||
               (!sscanf(argv[i], "%i",&d.num_monsters))){
             usage(argv[0]);
@@ -171,6 +172,14 @@ int main(int argc, char *argv[])
   //render_tunnel_distance_map(&d);
   //render_hardness_map(&d);
   //render_movement_cost_map(&d);
+  terrain_type_t last = ter_floor_room;
+  while(1)
+  {
+	  pcRandomMovement(&d, last);
+	  usleep(1000000);
+	  render_dungeon(&d);
+  }
+  
 
   if (do_save) {
     if (do_save_seed) {

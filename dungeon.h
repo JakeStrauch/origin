@@ -63,6 +63,8 @@ typedef struct dungeon {
   int num_monsters;
 } dungeon_t;
 
+void move(dungeon_t *d, int curX, int curY, int newX, int newY, terrain_type_t last);
+void pcRandomMovement(dungeon_t *d, terrain_type_t last);
 void init_dungeon(dungeon_t *d);
 void delete_dungeon(dungeon_t *d);
 int gen_dungeon(dungeon_t *d);

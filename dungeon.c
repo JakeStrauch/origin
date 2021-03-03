@@ -27,7 +27,6 @@ typedef struct corridor_path {
 static uint32_t in_room(dungeon_t *d, int16_t y, int16_t x)
 {
   int i;
-
   for (i = 0; i < d->num_rooms; i++) {
     if ((x >= d->rooms[i].position[dim_x]) &&
         (x < (d->rooms[i].position[dim_x] + d->rooms[i].size[dim_x])) &&
@@ -36,10 +35,65 @@ static uint32_t in_room(dungeon_t *d, int16_t y, int16_t x)
       return 1;
     }
   }
-
   return 0;
 }
 */
+
+/*
+ter_debug,
+  ter_wall,
+  ,
+  ter_floor,
+  ter_floor_room,
+  ter_floor_hall,
+  ter_stairs,
+  ter_stairs_up,
+  ter_stairs_down
+*/
+
+void move(dungeon_t *d, int curX, int curY, int newX, int newY, terrain_type_t last) //*last might not be right
+{
+	if( (mapxy(newX, newY) != ter_wall) && (mapxy(newX, newY) != ter_wall_immutable))
+	{
+		//terrain_type_t temp = last;
+		//last = mapxy(newX, newY);
+		//mapxy(newX, newY) = mapxy(curX, curY);
+		//mapxy(curX, curY) = temp;
+		d->pc.position[dim_x] = newX;
+		d->pc.position[dim_y] = newY;
+		
+	}
+}
+
+void pcRandomMovement(dungeon_t *d, terrain_type_t last)
+{
+	int direction = (rand() % 4) + 1;
+	int newX;
+	int newY;
+	
+	if(direction == 1) //up
+	{
+		newX = d->pc.position[dim_x];
+		newY = d->pc.position[dim_y] - 1;
+		move(d, d->pc.position[dim_x], d->pc.position[dim_y], newX, newY, last);
+	} else if(direction == 2) //right
+	{
+		newX = d->pc.position[dim_x] + 1;
+		newY = d->pc.position[dim_y];
+		move(d, d->pc.position[dim_x], d->pc.position[dim_y], newX, newY, last);
+	} else if(direction == 3) //down
+	{
+		newX = d->pc.position[dim_x];
+		newY = d->pc.position[dim_y] + 1;
+		move(d, d->pc.position[dim_x], d->pc.position[dim_y], newX, newY, last);
+	} else //left
+	{
+		newX = d->pc.position[dim_x] - 1;
+		newY = d->pc.position[dim_y];
+		move(d, d->pc.position[dim_x], d->pc.position[dim_y], newX, newY, last);
+	}
+}
+
 
 static uint32_t adjacent_to_room(dungeon_t *d, int16_t y, int16_t x)
 {
