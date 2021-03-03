@@ -178,6 +178,7 @@ int main(int argc, char *argv[])
 	  pcRandomMovement(&d, last);
 	  usleep(1000000);
 	  render_dungeon(&d);
+	  
   }
   
 

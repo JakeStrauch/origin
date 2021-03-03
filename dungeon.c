@@ -62,6 +62,9 @@ void move(dungeon_t *d, int curX, int curY, int newX, int newY, terrain_type_t l
 		d->pc.position[dim_x] = newX;
 		d->pc.position[dim_y] = newY;
 		
+	} else
+	{
+		pcRandomMovement(d, last);
 	}
 }
 
