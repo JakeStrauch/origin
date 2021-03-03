@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
           }
           do_seed = 0;
           break;   
-        case 'nn': // modified to include --nummon switch this is part of assignment 1.04
+        case 'nn':
           if ((!long_arg && argv[i][2]) ||
               (long_arg && strcmp(argv[i], "-nummon")) ||
               argc < ++i + 1 ||
