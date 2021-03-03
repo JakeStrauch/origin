@@ -12,6 +12,7 @@
 #define ROOM_MIN_Y             3
 #define ROOM_MAX_X             20
 #define ROOM_MAX_Y             15
+#define NUM_MONSTERS           10 // hard code number of monsters close to 10
 #define SAVE_DIR               ".rlg327"
 #define DUNGEON_SAVE_FILE      "dungeon"
 #define DUNGEON_SAVE_SEMANTIC  "RLG327-" TERM
@@ -59,6 +60,7 @@ typedef struct dungeon {
   uint8_t pc_distance[DUNGEON_Y][DUNGEON_X];
   uint8_t pc_tunnel[DUNGEON_Y][DUNGEON_X];
   pc_t pc;
+  int num_monsters;
 } dungeon_t;
 
 void init_dungeon(dungeon_t *d);
